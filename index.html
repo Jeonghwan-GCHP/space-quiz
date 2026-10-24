@@ -790,6 +790,7 @@
       <div class="results-score" id="finalScore">0/10</div>
       <div class="results-extra" id="resultsExtra"></div>
       <div class="results-message" id="resultMessage"></div>
+      <button class="button button-primary" id="reviewButton" onclick="startReview()" style="display: none;">복습하기</button>
       <button class="button button-primary" onclick="restartQuiz()">다시 시작</button>
     </div>
   </div>
@@ -999,6 +1000,13 @@
     let timerInterval = null;
     let timeRemaining = 0;
     let timedOutQuestions = 0;
+    let wrongAnswers = [];
+    let isReviewMode = false;
+    let reviewMode = {
+      currentQuestion: 0,
+      score: 0,
+      correct: 0
+    };
 
     // 통계 저장
     class Statistics {
@@ -1135,6 +1143,11 @@
       timedOutQuestions = 0;
       currentQuestion = 0;
       answered = false;
+      wrongAnswers = [];
+      isReviewMode = false;
+      reviewMode.currentQuestion = 0;
+      reviewMode.score = 0;
+      reviewMode.correct = 0;
       
       document.getElementById('resultsScreen').classList.remove('show');
       document.getElementById('quizContent').style.display = 'block';
@@ -1187,19 +1200,40 @@
 
       if (selectedIndex === correctIndex) {
         selectedOption.classList.add('correct');
-        score += 10;
-        correct++;
+        if (isReviewMode) {
+          reviewMode.score += 10;
+          reviewMode.correct++;
+        } else {
+          score += 10;
+          correct++;
+        }
+        if (!isReviewMode) {
+          // Only track wrong answers in regular mode (don't re-add during review)
+        }
       } else {
         selectedOption.classList.add('incorrect');
         correctOption.classList.add('correct');
+        if (!isReviewMode) {
+          wrongAnswers.push(currentQuestion);
+        }
       }
 
-      document.getElementById('scoreValue').textContent = score;
-      document.getElementById('correctCount').textContent = correct;
+      if (isReviewMode) {
+        document.getElementById('scoreValue').textContent = reviewMode.score;
+        document.getElementById('correctCount').textContent = reviewMode.correct;
+      } else {
+        document.getElementById('scoreValue').textContent = score;
+        document.getElementById('correctCount').textContent = correct;
+      }
 
       setTimeout(() => {
-        currentQuestion++;
-        loadQuestion();
+        if (isReviewMode) {
+          reviewMode.currentQuestion++;
+          loadReviewQuestion();
+        } else {
+          currentQuestion++;
+          loadQuestion();
+        }
       }, 1200);
     }
 
@@ -1264,6 +1298,14 @@
         extraInfo += ` | 시간 내 정답률: ${Math.round(timeRate)}%`;
       }
       document.getElementById('resultsExtra').textContent = extraInfo;
+
+      // Show review button only if there are wrong answers and score is not perfect
+      const reviewButton = document.getElementById('reviewButton');
+      if (wrongAnswers.length > 0 && percentage < 100) {
+        reviewButton.style.display = 'block';
+      } else {
+        reviewButton.style.display = 'none';
+      }
     }
 
     // 난이도 라벨
@@ -1274,6 +1316,90 @@
         hard: '어려움 ⭐'
       };
       return labels[difficulty] || '알 수 없음';
+    }
+
+    // 복습 모드 시작
+    function startReview() {
+      isReviewMode = true;
+      reviewMode.currentQuestion = 0;
+      reviewMode.score = 0;
+      reviewMode.correct = 0;
+      answered = false;
+
+      document.getElementById('resultsScreen').classList.remove('show');
+      document.getElementById('quizContent').style.display = 'block';
+      document.getElementById('progressContainer').style.display = 'block';
+      
+      loadReviewQuestion();
+    }
+
+    // 복습 문제 로드
+    function loadReviewQuestion() {
+      if (reviewMode.currentQuestion >= wrongAnswers.length) {
+        showReviewResults();
+        return;
+      }
+
+      answered = false;
+      const questionIndex = wrongAnswers[reviewMode.currentQuestion];
+      const question = quizData[questionIndex];
+      const progressPercent = ((reviewMode.currentQuestion + 1) / wrongAnswers.length) * 100;
+
+      document.getElementById('questionText').textContent = question.question;
+      document.getElementById('progressText').textContent = `복습 ${reviewMode.currentQuestion + 1} / ${wrongAnswers.length}`;
+      document.getElementById('progressBar').style.width = progressPercent + '%';
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option';
+        button.textContent = option;
+        button.onclick = () => selectOption(index, question.correct);
+        container.appendChild(button);
+      });
+
+      document.querySelector('.option')?.focus();
+    }
+
+    // 복습 결과 표시
+    function showReviewResults() {
+      document.getElementById('quizContent').style.display = 'none';
+      document.getElementById('progressContainer').style.display = 'none';
+
+      const percentage = (reviewMode.correct / wrongAnswers.length) * 100;
+      const resultScreen = document.getElementById('resultsScreen');
+      
+      resultScreen.classList.add('show');
+      document.getElementById('finalScore').textContent = `${reviewMode.correct}/${wrongAnswers.length}`;
+
+      let emoji, message;
+      if (percentage === 100) {
+        emoji = '🌟';
+        message = '완벽합니다! 모든 문제를 맞췄어요!';
+      } else if (percentage >= 80) {
+        emoji = '🚀';
+        message = '훌륭합니다! 크게 향상되었어요.';
+      } else if (percentage >= 60) {
+        emoji = '🌍';
+        message = '좋습니다! 계속 연습해보세요.';
+      } else if (percentage >= 40) {
+        emoji = '🌙';
+        message = '더 노력이 필요해요.';
+      } else {
+        emoji = '🔭';
+        message = '다시 한 번 도전해보세요!';
+      }
+
+      document.getElementById('emojiReaction').textContent = emoji;
+      document.getElementById('resultMessage').textContent = message;
+      document.getElementById('resultsExtra').textContent = `복습 결과: ${reviewMode.correct}/${wrongAnswers.length}`;
+
+      // Hide review button and show restart button only
+      document.getElementById('reviewButton').style.display = 'none';
+
+      isReviewMode = false;
     }
 
     // 다시 시작
