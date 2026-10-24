@@ -365,6 +365,319 @@
       transform: translateY(0);
     }
 
+    .button-secondary {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .button-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Difficulty Selection Screen */
+    .difficulty-screen {
+      display: none;
+      text-align: center;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .difficulty-screen.show {
+      display: block;
+    }
+
+    .difficulty-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .difficulty-subtitle {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 30px;
+    }
+
+    .difficulty-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .difficulty-btn {
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .difficulty-btn:hover {
+      border-color: var(--primary);
+      background: var(--bg-white);
+      transform: translateX(4px);
+    }
+
+    .difficulty-btn.easy {
+      --accent: #10b981;
+    }
+
+    .difficulty-btn.normal {
+      --accent: var(--primary);
+    }
+
+    .difficulty-btn.hard {
+      --accent: var(--error);
+    }
+
+    .mode-selection {
+      display: none;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .mode-selection.show {
+      display: block;
+    }
+
+    .mode-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .mode-subtitle {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 24px;
+    }
+
+    .mode-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mode-btn {
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: left;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--primary);
+      background: var(--bg-white);
+    }
+
+    .mode-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .mode-desc {
+      font-size: 13px;
+      color: var(--text-gray);
+    }
+
+    /* Timer Display */
+    .timer-display {
+      display: none;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: right;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-display.show {
+      display: block;
+    }
+
+    .timer-display.warning {
+      color: var(--error);
+      animation: pulse 0.5s infinite;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-white);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .modal-header {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-item {
+      padding: 16px;
+      background: var(--bg-light);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stats-list {
+      margin-bottom: 24px;
+    }
+
+    .stats-list-item {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .stats-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .stats-label {
+      color: var(--text-gray);
+    }
+
+    .stats-value {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .modal-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .modal-button-close {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 1px solid var(--border);
+    }
+
+    .modal-button-close:hover {
+      background: var(--border);
+    }
+
+    .modal-button-reset {
+      background: var(--error);
+      color: white;
+    }
+
+    .modal-button-reset:hover {
+      opacity: 0.9;
+    }
+
+    /* Results Extra Info */
+    .results-extra {
+      background: var(--bg-light);
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    /* Stats Button */
+    .stats-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stats-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    }
+
     /* Hidden */
     .hidden {
       display: none;
@@ -396,6 +709,8 @@
   </style>
 </head>
 <body>
+  <button class="stats-button" id="statsButton" onclick="openStats()" style="display: none;" title="통계 보기">📊</button>
+
   <div class="container">
     <!-- Header -->
     <div class="header">
@@ -403,11 +718,45 @@
       <div class="subtitle">당신은 우주에 대해 얼마나 알고 있나요?</div>
     </div>
 
+    <!-- Difficulty Selection Screen -->
+    <div class="difficulty-screen" id="difficultyScreen">
+      <div class="difficulty-title">난이도 선택</div>
+      <div class="difficulty-subtitle">도전할 난이도를 선택하세요</div>
+      <div class="difficulty-buttons">
+        <button class="difficulty-btn easy" onclick="selectDifficulty('easy')">
+          🌱 쉬움 (초등학생 수준)
+        </button>
+        <button class="difficulty-btn normal" onclick="selectDifficulty('normal')">
+          🌍 보통 (중고등학생 수준)
+        </button>
+        <button class="difficulty-btn hard" onclick="selectDifficulty('hard')">
+          ⭐ 어려움 (전문가 수준)
+        </button>
+      </div>
+    </div>
+
+    <!-- Mode Selection Screen -->
+    <div class="mode-selection" id="modeSelection">
+      <div class="mode-title">게임 모드 선택</div>
+      <div class="mode-subtitle">원하는 모드를 선택하세요</div>
+      <div class="mode-buttons">
+        <button class="mode-btn" onclick="selectMode('normal')">
+          <span class="mode-label">🎯 일반 모드</span>
+          <span class="mode-desc">무제한 시간으로 천천히 풀기</span>
+        </button>
+        <button class="mode-btn" onclick="selectMode('timed')">
+          <span class="mode-label">⏱️ 도전 모드 (20초)</span>
+          <span class="mode-desc">각 문제마다 20초의 시간 제한</span>
+        </button>
+      </div>
+      <button class="button button-secondary" onclick="backToDifficulty()" style="margin-top: 24px;">뒤로 가기</button>
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-container" id="progressContainer">
       <div class="progress-info">
         <span id="progressText">문제 1 / 10</span>
-        <span id="timerText"></span>
+        <div class="timer-display" id="timerText"></div>
       </div>
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" id="progressBar"></div>
@@ -439,281 +788,552 @@
       <div class="emoji-reaction" id="emojiReaction">🌟</div>
       <div class="results-title">퀴즈 완료!</div>
       <div class="results-score" id="finalScore">0/10</div>
+      <div class="results-extra" id="resultsExtra"></div>
       <div class="results-message" id="resultMessage"></div>
-      <button class="button button-primary" id="reviewButton" onclick="startReview()" style="display: none;">복습하기</button>
-      <button class="button button-primary" onclick="location.reload()">다시 시작</button>
+      <button class="button button-primary" onclick="restartQuiz()">다시 시작</button>
+    </div>
+  </div>
+
+  <!-- Statistics Modal -->
+  <div class="modal" id="statsModal">
+    <div class="modal-content">
+      <div class="modal-header">📊 통계</div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">총 시도</div>
+          <div class="stat-value" id="statTotalAttempts">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">평균 점수</div>
+          <div class="stat-value" id="statAvgScore">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">최고점</div>
+          <div class="stat-value" id="statBestScore">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">정답률</div>
+          <div class="stat-value" id="statAccuracy">0%</div>
+        </div>
+      </div>
+
+      <div class="stats-list" id="difficultyStats"></div>
+
+      <div class="modal-buttons">
+        <button class="modal-button modal-button-reset" onclick="resetStats()">기록 초기화</button>
+        <button class="modal-button modal-button-close" onclick="closeStats()">닫기</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const quizData = [
-      {
-        question: "태양계에서 가장 큰 행성은 무엇인가요?",
-        options: ["토성", "목성", "천왕성", "해왕성"],
-        correct: 1
-      },
-      {
-        question: "지구가 태양 주위를 한 바퀴 도는 데 걸리는 시간은?",
-        options: ["11개월", "1년", "2년", "3년"],
-        correct: 1
-      },
-      {
-        question: "화성은 어떤 색깔로 보이나요?",
-        options: ["파란색", "노란색", "빨간색", "초록색"],
-        correct: 2
-      },
-      {
-        question: "태양의 중심에서 일어나는 핵반응의 이름은?",
-        options: ["핵분열", "핵융합", "태양흑점", "코로나"],
-        correct: 1
-      },
-      {
-        question: "우주에서 가장 밝은 별 중 하나는?",
-        options: ["폴라리스", "시리우스", "베가", "리겔"],
-        correct: 1
-      },
-      {
-        question: "달이 지구 주위를 한 바퀴 도는 데 걸리는 시간은?",
-        options: ["7일", "14일", "약 27일", "1개월"],
-        correct: 2
-      },
-      {
-        question: "블랙홀은 어떤 현상인가요?",
-        options: ["우주의 빈 공간", "빛이 탈출할 수 없는 영역", "작은 행성", "별의 배경"],
-        correct: 1
-      },
-      {
-        question: "우리 은하의 이름은?",
-        options: ["안드로메다", "은하수", "삼각형", "마젤란 구름"],
-        correct: 1
-      },
-      {
-        question: "태양 외부의 별 주위를 도는 행성을 뭐라고 부르나요?",
-        options: ["위성", "소행성", "외계행성", "혜성"],
-        correct: 2
-      },
-      {
-        question: "국제우주정거장(ISS)은 약 몇 분마다 지구를 한 바퀴 도나요?",
-        options: ["30분", "60분", "90분", "120분"],
-        correct: 2
-      }
-    ];
+    // 난이도별 문제 데이터
+    const quizDataByDifficulty = {
+      easy: [
+        {
+          question: "태양계에서 가장 큰 행성은 무엇인가요?",
+          options: ["토성", "목성", "천왕성", "해왕성"],
+          correct: 1
+        },
+        {
+          question: "지구가 태양 주위를 한 바퀴 도는 데 걸리는 시간은?",
+          options: ["11개월", "1년", "2년", "3년"],
+          correct: 1
+        },
+        {
+          question: "화성은 어떤 색깔로 보이나요?",
+          options: ["파란색", "노란색", "빨간색", "초록색"],
+          correct: 2
+        },
+        {
+          question: "우리 태양계에서 태양에 가장 가까운 행성은?",
+          options: ["금성", "수성", "지구", "화성"],
+          correct: 1
+        },
+        {
+          question: "달이 지구 주위를 한 바퀴 도는 데 걸리는 시간은?",
+          options: ["7일", "14일", "약 27일", "1개월"],
+          correct: 2
+        },
+        {
+          question: "우리 은하의 이름은?",
+          options: ["안드로메다", "은하수", "삼각형", "마젤란 구름"],
+          correct: 1
+        },
+        {
+          question: "별빛이 지구까지 도달하는 데 걸리는 거리의 단위는?",
+          options: ["광초", "광분", "광년", "광시간"],
+          correct: 2
+        },
+        {
+          question: "국제우주정거장(ISS)에서는 하루에 몇 번 일출과 일몰을 볼까요?",
+          options: ["1번", "4번", "16번", "24번"],
+          correct: 2
+        },
+        {
+          question: "토성의 가장 특징적인 특징은?",
+          options: ["빨간색 반점", "고리", "큰 위성", "폭풍"],
+          correct: 1
+        },
+        {
+          question: "우주에서 가장 흔한 원소는?",
+          options: ["산소", "질소", "헬륨", "수소"],
+          correct: 3
+        }
+      ],
+      normal: [
+        {
+          question: "태양의 중심에서 일어나는 핵반응의 이름은?",
+          options: ["핵분열", "핵융합", "태양흑점", "코로나"],
+          correct: 1
+        },
+        {
+          question: "우주에서 가장 밝은 별 중 하나는?",
+          options: ["폴라리스", "시리우스", "베가", "리겔"],
+          correct: 1
+        },
+        {
+          question: "블랙홀은 어떤 현상인가요?",
+          options: ["우주의 빈 공간", "빛이 탈출할 수 없는 영역", "작은 행성", "별의 배경"],
+          correct: 1
+        },
+        {
+          question: "태양 외부의 별 주위를 도는 행성을 뭐라고 부르나요?",
+          options: ["위성", "소행성", "외계행성", "혜성"],
+          correct: 2
+        },
+        {
+          question: "국제우주정거장(ISS)은 약 몇 분마다 지구를 한 바퀴 도나요?",
+          options: ["30분", "60분", "90분", "120분"],
+          correct: 2
+        },
+        {
+          question: "명왕성이 행성 지위에서 제외된 이유는?",
+          options: ["너무 작음", "궤도를 소행성과 공유", "대기가 없음", "위성이 너무 큼"],
+          correct: 1
+        },
+        {
+          question: "우주의 팽창을 발견한 천문학자는?",
+          options: ["아이슈타인", "뉴턴", "허블", "갈릴레이"],
+          correct: 2
+        },
+        {
+          question: "태양 표면의 온도는 약 몇 도인가요?",
+          options: ["3000K", "5800K", "10000K", "15000K"],
+          correct: 1
+        },
+        {
+          question: "우주의 나이는 약 몇 살일까요?",
+          options: ["50억 년", "100억 년", "138억 년", "200억 년"],
+          correct: 2
+        },
+        {
+          question: "금성의 자전 주기는?",
+          options: ["지구와 같음", "매우 느림 (역방향)", "빠름", "알 수 없음"],
+          correct: 1
+        }
+      ],
+      hard: [
+        {
+          question: "슈바르츠실트 반경의 개념과 가장 관련 있는 것은?",
+          options: ["태양의 크기", "블랙홀의 사건의 지평선", "행성의 공전 주기", "별의 광도"],
+          correct: 1
+        },
+        {
+          question: "우주의 대규모 구조에서 암흑 에너지의 역할은?",
+          options: ["별 형성 촉진", "우주의 가속적 팽창", "은하 충돌 방지", "별의 핵융합"],
+          correct: 1
+        },
+        {
+          question: "중성자별의 밀도는 약?",
+          options: ["태양과 비슷", "백신 크기에 1조 톤", "지구와 비슷", "알려지지 않음"],
+          correct: 1
+        },
+        {
+          question: "우주 마이크로파 배경(CMB)은 무엇을 나타내나요?",
+          options: ["현재의 우주", "초기 우주의 복사", "별의 형성", "은하 충돌"],
+          correct: 1
+        },
+        {
+          question: "외계행성 검출의 가장 효과적인 방법은?",
+          options: ["직접 촬영", "도플러 이동 방법", "통과 방법", "중력렌징"],
+          correct: 2
+        },
+        {
+          question: "일반상대성이론에서 중력은 어떻게 설명되나요?",
+          options: ["힘", "시공간의 곡률", "에너지", "광자의 상호작용"],
+          correct: 1
+        },
+        {
+          question: "우주 상수(Lambda)와 관련 있는 개념은?",
+          options: ["별의 밝기", "암흑 에너지", "은하 회전", "중력파"],
+          correct: 1
+        },
+        {
+          question: "빅뱅 직후 우주의 상태를 가장 잘 설명하는 것은?",
+          options: ["차갑고 조용함", "매우 뜨겁고 밀집", "균질하지 않음", "현재와 같음"],
+          correct: 1
+        },
+        {
+          question: "중력파를 처음 발견한 관측소는?",
+          options: ["허블", "LIGO", "케플러", "찬드라"],
+          correct: 1
+        },
+        {
+          question: "별의 진화 단계를 가장 잘 나타내는 다이어그램은?",
+          options: ["흑체 곡선", "주계열도", "헤르츠스프룽-러셀도", "파워 스펙트럼"],
+          correct: 2
+        }
+      ]
+    };
 
+    // 전역 변수
+    let quizData = [];
     let currentQuestion = 0;
     let score = 0;
     let correct = 0;
     let answered = false;
-    let wrongAnswers = [];
-    let isReviewMode = false;
-    let reviewMode = {
-      currentQuestion: 0,
-      score: 0,
-      correct: 0
-    };
+    let currentDifficulty = null;
+    let currentMode = null;
+    let timerInterval = null;
+    let timeRemaining = 0;
+    let timedOutQuestions = 0;
 
+    // 통계 저장
+    class Statistics {
+      static save(difficulty, correct, total, timedOut = 0) {
+        const stats = this.load();
+        const entry = {
+          date: new Date().toISOString(),
+          difficulty: difficulty,
+          correct: correct,
+          total: total,
+          score: (correct / total) * 100,
+          timedOut: timedOut
+        };
+        stats.push(entry);
+        localStorage.setItem('quizStats', JSON.stringify(stats));
+      }
+
+      static load() {
+        const data = localStorage.getItem('quizStats');
+        return data ? JSON.parse(data) : [];
+      }
+
+      static clear() {
+        localStorage.removeItem('quizStats');
+      }
+
+      static getStats() {
+        const stats = this.load();
+        if (stats.length === 0) {
+          return {
+            totalAttempts: 0,
+            avgScore: 0,
+            bestScore: 0,
+            totalCorrect: 0,
+            totalQuestions: 0,
+            byDifficulty: { easy: [], normal: [], hard: [] }
+          };
+        }
+
+        let totalCorrect = 0;
+        let totalQuestions = 0;
+        const byDifficulty = { easy: [], normal: [], hard: [] };
+
+        stats.forEach(entry => {
+          totalCorrect += entry.correct;
+          totalQuestions += entry.total;
+          byDifficulty[entry.difficulty].push(entry);
+        });
+
+        const avgScore = totalQuestions > 0 ? (totalCorrect / totalQuestions) * 100 : 0;
+        const bestScore = Math.max(...stats.map(s => s.score), 0);
+
+        return {
+          totalAttempts: stats.length,
+          avgScore: Math.round(avgScore),
+          bestScore: Math.round(bestScore),
+          totalCorrect: totalCorrect,
+          totalQuestions: totalQuestions,
+          byDifficulty: byDifficulty
+        };
+      }
+    }
+
+    // 타이머 관리
+    function startTimer() {
+      if (currentMode !== 'timed') return;
+      
+      timeRemaining = 20;
+      updateTimerDisplay();
+      
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          timedOutQuestions++;
+          nextQuestion();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function updateTimerDisplay() {
+      const timerEl = document.getElementById('timerText');
+      if (currentMode === 'timed') {
+        timerEl.classList.add('show');
+        timerEl.textContent = `⏱️ ${timeRemaining}초`;
+        
+        if (timeRemaining <= 5) {
+          timerEl.classList.add('warning');
+        } else {
+          timerEl.classList.remove('warning');
+        }
+      } else {
+        timerEl.classList.remove('show');
+      }
+    }
+
+    // 난이도 선택
+    function selectDifficulty(difficulty) {
+      currentDifficulty = difficulty;
+      quizData = quizDataByDifficulty[difficulty];
+      
+      document.getElementById('difficultyScreen').classList.remove('show');
+      document.getElementById('modeSelection').classList.add('show');
+    }
+
+    // 모드 선택
+    function selectMode(mode) {
+      currentMode = mode;
+      document.getElementById('modeSelection').classList.remove('show');
+      document.getElementById('statsButton').style.display = 'flex';
+      init();
+    }
+
+    // 난이도로 돌아가기
+    function backToDifficulty() {
+      document.getElementById('modeSelection').classList.remove('show');
+      document.getElementById('difficultyScreen').classList.add('show');
+      currentDifficulty = null;
+    }
+
+    // 초기화
     function init() {
       score = 0;
       correct = 0;
+      timedOutQuestions = 0;
       currentQuestion = 0;
       answered = false;
-      document.getElementById("resultsScreen").classList.remove("show");
-      document.getElementById("quizContent").style.display = "block";
-      document.getElementById("progressContainer").style.display = "block";
+      
+      document.getElementById('resultsScreen').classList.remove('show');
+      document.getElementById('quizContent').style.display = 'block';
+      document.getElementById('progressContainer').style.display = 'block';
       loadQuestion();
     }
 
+    // 문제 로드
     function loadQuestion() {
       if (currentQuestion >= quizData.length) {
         showResults();
         return;
       }
 
+      stopTimer();
       answered = false;
       const question = quizData[currentQuestion];
       const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
 
-      document.getElementById("questionText").textContent = question.question;
-      document.getElementById("progressText").textContent = `문제 ${currentQuestion + 1} / 10`;
-      document.getElementById("progressBar").style.width = progressPercent + "%";
+      document.getElementById('questionText').textContent = question.question;
+      document.getElementById('progressText').textContent = `문제 ${currentQuestion + 1} / 10`;
+      document.getElementById('progressBar').style.width = progressPercent + '%';
 
-      const container = document.getElementById("optionsContainer");
-      container.innerHTML = "";
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
 
       question.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "option";
+        const button = document.createElement('button');
+        button.className = 'option';
         button.textContent = option;
         button.onclick = () => selectOption(index, question.correct);
         container.appendChild(button);
       });
 
-      document.querySelector(".option")?.focus();
+      document.querySelector('.option')?.focus();
+      startTimer();
     }
 
-    function loadReviewQuestion() {
-      if (reviewMode.currentQuestion >= wrongAnswers.length) {
-        showReviewResults();
-        return;
-      }
-
-      answered = false;
-      const questionIndex = wrongAnswers[reviewMode.currentQuestion];
-      const question = quizData[questionIndex];
-      const progressPercent = ((reviewMode.currentQuestion + 1) / wrongAnswers.length) * 100;
-
-      document.getElementById("questionText").textContent = question.question;
-      document.getElementById("progressText").textContent = `복습 ${reviewMode.currentQuestion + 1} / ${wrongAnswers.length}`;
-      document.getElementById("progressBar").style.width = progressPercent + "%";
-
-      const container = document.getElementById("optionsContainer");
-      container.innerHTML = "";
-
-      question.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "option";
-        button.textContent = option;
-        button.onclick = () => selectOption(index, question.correct);
-        container.appendChild(button);
-      });
-
-      document.querySelector(".option")?.focus();
-    }
-
+    // 옵션 선택
     function selectOption(selectedIndex, correctIndex) {
       if (answered) return;
       answered = true;
+      stopTimer();
 
-      const options = document.querySelectorAll(".option");
-      options.forEach((opt) => opt.classList.add("disabled"));
+      const options = document.querySelectorAll('.option');
+      options.forEach((opt) => opt.classList.add('disabled'));
 
       const selectedOption = options[selectedIndex];
       const correctOption = options[correctIndex];
 
       if (selectedIndex === correctIndex) {
-        selectedOption.classList.add("correct");
-        if (isReviewMode) {
-          reviewMode.score += 10;
-          reviewMode.correct++;
-        } else {
-          score += 10;
-          correct++;
-        }
+        selectedOption.classList.add('correct');
+        score += 10;
+        correct++;
       } else {
-        selectedOption.classList.add("incorrect");
-        correctOption.classList.add("correct");
-        if (!isReviewMode) {
-          wrongAnswers.push(currentQuestion);
-        }
+        selectedOption.classList.add('incorrect');
+        correctOption.classList.add('correct');
       }
 
-      if (isReviewMode) {
-        document.getElementById("scoreValue").textContent = reviewMode.score;
-        document.getElementById("correctCount").textContent = reviewMode.correct;
-      } else {
-        document.getElementById("scoreValue").textContent = score;
-        document.getElementById("correctCount").textContent = correct;
-      }
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('correctCount').textContent = correct;
 
       setTimeout(() => {
-        if (isReviewMode) {
-          reviewMode.currentQuestion++;
-          loadReviewQuestion();
-        } else {
-          currentQuestion++;
-          loadQuestion();
-        }
+        currentQuestion++;
+        loadQuestion();
       }, 1200);
     }
 
+    // 다음 문제로
+    function nextQuestion() {
+      if (!answered) {
+        answered = true;
+        const options = document.querySelectorAll('.option');
+        options.forEach((opt) => opt.classList.add('disabled'));
+        
+        const question = quizData[currentQuestion];
+        const correctOption = options[question.correct];
+        correctOption.classList.add('correct');
+      }
+      
+      setTimeout(() => {
+        currentQuestion++;
+        loadQuestion();
+      }, 1000);
+    }
+
+    // 결과 표시
     function showResults() {
-      document.getElementById("quizContent").style.display = "none";
-      document.getElementById("progressContainer").style.display = "none";
+      document.getElementById('quizContent').style.display = 'none';
+      document.getElementById('progressContainer').style.display = 'none';
+      stopTimer();
 
       const percentage = (correct / quizData.length) * 100;
-      const resultScreen = document.getElementById("resultsScreen");
+      const resultScreen = document.getElementById('resultsScreen');
       
-      resultScreen.classList.add("show");
-      document.getElementById("finalScore").textContent = `${correct}/10`;
+      resultScreen.classList.add('show');
+      document.getElementById('finalScore').textContent = `${correct}/10`;
 
       let emoji, message;
       if (percentage === 100) {
-        emoji = "🌟";
-        message = "완벽합니다! 당신은 우주 전문가입니다!";
+        emoji = '🌟';
+        message = '완벽합니다! 당신은 우주 전문가입니다!';
       } else if (percentage >= 80) {
-        emoji = "🚀";
-        message = "훌륭합니다! 우주에 대해 아주 잘 알고 있네요.";
+        emoji = '🚀';
+        message = '훌륭합니다! 우주에 대해 아주 잘 알고 있네요.';
       } else if (percentage >= 60) {
-        emoji = "🌍";
-        message = "좋습니다! 더 배울 수 있을 것 같아요.";
+        emoji = '🌍';
+        message = '좋습니다! 더 배울 수 있을 것 같아요.';
       } else if (percentage >= 40) {
-        emoji = "🌙";
-        message = "조금 더 노력해보세요!";
+        emoji = '🌙';
+        message = '조금 더 노력해보세요!';
       } else {
-        emoji = "🔭";
-        message = "우주 탐사를 계속해보세요!";
+        emoji = '🔭';
+        message = '우주 탐사를 계속해보세요!';
       }
 
-      document.getElementById("emojiReaction").textContent = emoji;
-      document.getElementById("resultMessage").textContent = message;
+      document.getElementById('emojiReaction').textContent = emoji;
+      document.getElementById('resultMessage').textContent = message;
 
-      const reviewButton = document.getElementById("reviewButton");
-      if (wrongAnswers.length > 0 && percentage < 100) {
-        reviewButton.style.display = "block";
-      } else {
-        reviewButton.style.display = "none";
+      // 결과 저장
+      Statistics.save(currentDifficulty, correct, quizData.length, timedOutQuestions);
+
+      // 추가 정보 표시
+      let extraInfo = `난이도: ${getDifficultyLabel(currentDifficulty)} | 모드: ${currentMode === 'timed' ? '도전 모드 (시간 제한)' : '일반 모드'}`;
+      if (currentMode === 'timed') {
+        const timeRate = ((quizData.length - timedOutQuestions) / quizData.length) * 100;
+        extraInfo += ` | 시간 내 정답률: ${Math.round(timeRate)}%`;
       }
+      document.getElementById('resultsExtra').textContent = extraInfo;
     }
 
-    function startReview() {
-      isReviewMode = true;
-      reviewMode.currentQuestion = 0;
-      reviewMode.score = 0;
-      reviewMode.correct = 0;
-
-      document.getElementById("resultsScreen").classList.remove("show");
-      document.getElementById("quizContent").style.display = "block";
-      document.getElementById("progressContainer").style.display = "block";
-      document.getElementById("scoreValue").textContent = "0";
-      document.getElementById("correctCount").textContent = "0";
-
-      loadReviewQuestion();
+    // 난이도 라벨
+    function getDifficultyLabel(difficulty) {
+      const labels = {
+        easy: '쉬움 🌱',
+        normal: '보통 🌍',
+        hard: '어려움 ⭐'
+      };
+      return labels[difficulty] || '알 수 없음';
     }
 
-    function showReviewResults() {
-      document.getElementById("quizContent").style.display = "none";
-      document.getElementById("progressContainer").style.display = "none";
+    // 다시 시작
+    function restartQuiz() {
+      document.getElementById('statsButton').style.display = 'none';
+      document.getElementById('difficultyScreen').classList.add('show');
+      document.getElementById('resultsScreen').classList.remove('show');
+    }
 
-      const percentage = (reviewMode.correct / wrongAnswers.length) * 100;
-      const resultScreen = document.getElementById("resultsScreen");
+    // 통계 열기
+    function openStats() {
+      const stats = Statistics.getStats();
       
-      resultScreen.classList.add("show");
-      document.getElementById("finalScore").textContent = `${reviewMode.correct}/${wrongAnswers.length}`;
+      document.getElementById('statTotalAttempts').textContent = stats.totalAttempts;
+      document.getElementById('statAvgScore').textContent = stats.avgScore;
+      document.getElementById('statBestScore').textContent = Math.round(stats.bestScore);
+      
+      const accuracy = stats.totalQuestions > 0 
+        ? Math.round((stats.totalCorrect / stats.totalQuestions) * 100)
+        : 0;
+      document.getElementById('statAccuracy').textContent = accuracy + '%';
 
-      let emoji, message;
-      if (percentage === 100) {
-        emoji = "🌟";
-        message = "완벽합니다! 이제 모두 이해했어요!";
-      } else if (percentage >= 80) {
-        emoji = "🚀";
-        message = "훌륭합니다! 많이 개선되었어요.";
-      } else if (percentage >= 60) {
-        emoji = "🌍";
-        message = "좋습니다! 계속 공부해보세요.";
-      } else if (percentage >= 40) {
-        emoji = "🌙";
-        message = "조금 더 노력하면 될 것 같아요!";
-      } else {
-        emoji = "🔭";
-        message = "한 번 더 복습해보세요!";
-      }
+      // 난이도별 통계
+      const diffStatsHtml = Object.entries(stats.byDifficulty).map(([difficulty, entries]) => {
+        if (entries.length === 0) return '';
+        
+        const avgScore = entries.reduce((sum, e) => sum + e.score, 0) / entries.length;
+        const bestScore = Math.max(...entries.map(e => e.score));
+        
+        return `
+          <div class="stats-list-item">
+            <span class="stats-label">${getDifficultyLabel(difficulty)}</span>
+            <span class="stats-value">평균: ${Math.round(avgScore)}점 | 최고: ${Math.round(bestScore)}점</span>
+          </div>
+        `;
+      }).join('');
 
-      document.getElementById("emojiReaction").textContent = emoji;
-      document.getElementById("resultMessage").textContent = message;
-      document.getElementById("reviewButton").style.display = "none";
+      document.getElementById('difficultyStats').innerHTML = diffStatsHtml || '<div class="stats-list-item"><span class="stats-label">아직 기록이 없습니다</span></div>';
+      
+      document.getElementById('statsModal').classList.add('show');
     }
 
-    // Start the quiz
-    init();
+    // 통계 닫기
+    function closeStats() {
+      document.getElementById('statsModal').classList.remove('show');
+    }
+
+    // 통계 초기화
+    function resetStats() {
+      if (confirm('정말로 모든 기록을 삭제하시겠습니까?')) {
+        Statistics.clear();
+        closeStats();
+        openStats();
+      }
+    }
+
+    // 시작
+    window.addEventListener('load', () => {
+      document.getElementById('difficultyScreen').classList.add('show');
+    });
   </script>
 </body>
 </html>
