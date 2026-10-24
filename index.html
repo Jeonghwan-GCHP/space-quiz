@@ -440,6 +440,7 @@
       <div class="results-title">퀴즈 완료!</div>
       <div class="results-score" id="finalScore">0/10</div>
       <div class="results-message" id="resultMessage"></div>
+      <button class="button button-primary" id="reviewButton" onclick="startReview()" style="display: none;">복습하기</button>
       <button class="button button-primary" onclick="location.reload()">다시 시작</button>
     </div>
   </div>
@@ -502,6 +503,13 @@
     let score = 0;
     let correct = 0;
     let answered = false;
+    let wrongAnswers = [];
+    let isReviewMode = false;
+    let reviewMode = {
+      currentQuestion: 0,
+      score: 0,
+      correct: 0
+    };
 
     function init() {
       score = 0;
@@ -539,7 +547,35 @@
         container.appendChild(button);
       });
 
-      // Accessibility
+      document.querySelector(".option")?.focus();
+    }
+
+    function loadReviewQuestion() {
+      if (reviewMode.currentQuestion >= wrongAnswers.length) {
+        showReviewResults();
+        return;
+      }
+
+      answered = false;
+      const questionIndex = wrongAnswers[reviewMode.currentQuestion];
+      const question = quizData[questionIndex];
+      const progressPercent = ((reviewMode.currentQuestion + 1) / wrongAnswers.length) * 100;
+
+      document.getElementById("questionText").textContent = question.question;
+      document.getElementById("progressText").textContent = `복습 ${reviewMode.currentQuestion + 1} / ${wrongAnswers.length}`;
+      document.getElementById("progressBar").style.width = progressPercent + "%";
+
+      const container = document.getElementById("optionsContainer");
+      container.innerHTML = "";
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "option";
+        button.textContent = option;
+        button.onclick = () => selectOption(index, question.correct);
+        container.appendChild(button);
+      });
+
       document.querySelector(".option")?.focus();
     }
 
@@ -555,19 +591,40 @@
 
       if (selectedIndex === correctIndex) {
         selectedOption.classList.add("correct");
-        score += 10;
-        correct++;
+        if (isReviewMode) {
+          reviewMode.score += 10;
+          reviewMode.correct++;
+        } else {
+          score += 10;
+          correct++;
+        }
       } else {
         selectedOption.classList.add("incorrect");
         correctOption.classList.add("correct");
+        if (!isReviewMode) {
+          wrongAnswers.push(currentQuestion);
+        }
+        if (isReviewMode) {
+          reviewMode.correct++;
+        }
       }
 
-      document.getElementById("scoreValue").textContent = score;
-      document.getElementById("correctCount").textContent = correct;
+      if (isReviewMode) {
+        document.getElementById("scoreValue").textContent = reviewMode.score;
+        document.getElementById("correctCount").textContent = reviewMode.correct;
+      } else {
+        document.getElementById("scoreValue").textContent = score;
+        document.getElementById("correctCount").textContent = correct;
+      }
 
       setTimeout(() => {
-        currentQuestion++;
-        loadQuestion();
+        if (isReviewMode) {
+          reviewMode.currentQuestion++;
+          loadReviewQuestion();
+        } else {
+          currentQuestion++;
+          loadQuestion();
+        }
       }, 1200);
     }
 
@@ -601,6 +658,61 @@
 
       document.getElementById("emojiReaction").textContent = emoji;
       document.getElementById("resultMessage").textContent = message;
+
+      const reviewButton = document.getElementById("reviewButton");
+      if (wrongAnswers.length > 0 && percentage < 100) {
+        reviewButton.style.display = "block";
+      } else {
+        reviewButton.style.display = "none";
+      }
+    }
+
+    function startReview() {
+      isReviewMode = true;
+      reviewMode.currentQuestion = 0;
+      reviewMode.score = 0;
+      reviewMode.correct = 0;
+
+      document.getElementById("resultsScreen").classList.remove("show");
+      document.getElementById("quizContent").style.display = "block";
+      document.getElementById("progressContainer").style.display = "block";
+      document.getElementById("scoreValue").textContent = "0";
+      document.getElementById("correctCount").textContent = "0";
+
+      loadReviewQuestion();
+    }
+
+    function showReviewResults() {
+      document.getElementById("quizContent").style.display = "none";
+      document.getElementById("progressContainer").style.display = "none";
+
+      const percentage = (reviewMode.correct / wrongAnswers.length) * 100;
+      const resultScreen = document.getElementById("resultsScreen");
+      
+      resultScreen.classList.add("show");
+      document.getElementById("finalScore").textContent = `${reviewMode.correct}/${wrongAnswers.length}`;
+
+      let emoji, message;
+      if (percentage === 100) {
+        emoji = "🌟";
+        message = "완벽합니다! 이제 모두 이해했어요!";
+      } else if (percentage >= 80) {
+        emoji = "🚀";
+        message = "훌륭합니다! 많이 개선되었어요.";
+      } else if (percentage >= 60) {
+        emoji = "🌍";
+        message = "좋습니다! 계속 공부해보세요.";
+      } else if (percentage >= 40) {
+        emoji = "🌙";
+        message = "조금 더 노력하면 될 것 같아요!";
+      } else {
+        emoji = "🔭";
+        message = "한 번 더 복습해보세요!";
+      }
+
+      document.getElementById("emojiReaction").textContent = emoji;
+      document.getElementById("resultMessage").textContent = message;
+      document.getElementById("reviewButton").style.display = "none";
     }
 
     // Start the quiz
